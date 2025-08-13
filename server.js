@@ -1,34 +1,20 @@
-require('dotenv').config();
-
 const express = require('express');
-const cors = require('cors');
-const path = require('path');
 const http = require('http');
-const { Server } = require('socket.io');
-const multer = require('multer');
-const { nanoid } = require('nanoid');
+const path = require('path');
 
-const OWNER_PASS = process.env.OWNER_PASS || 'owner123';
+const app = express();
+const server = http.createServer(app);
 
-// NEW: مشرفين متعددين من متغيّر بيئة JSON
-let ADMINS = {};
-try {
-  // مثال القيمة: {"rami":"rami111","ali":"ali222"}
-  ADMINS = JSON.parse(process.env.ADMIN_USERS || '{}');
-} catch (e) {
-  ADMINS = {};
-}
+// خدمة الملفات الثابتة من نفس المجلد
+app.use(express.static(__dirname));
 
-// (اختياري) توافقاً مع القديم لو بدك كلمة موحدة للمشرفين
-const ADMIN_PASS = process.env.ADMIN_PASS || null;
+// مسار الصفحة الرئيسية
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-// دالة التحقق
-function checkAuth(name, role, pass) {
-  if (role === 'owner') return pass === OWNER_PASS;
-  if (role === 'admin') {
-    const expected = ADMINS[name] || ADMIN_PASS; // لو ما له كلمة خاصة، يرجع للقديمة إن وُجدت
-    return !!expected && pass === expected;
-  }
-  // المستخدم العادي بلا كلمة
-  return true;
-}
+// تشغيل الخادم على البورت المخصص من Render
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
