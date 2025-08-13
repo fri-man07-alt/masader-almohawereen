@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 // كلمات السر من متغيرات البيئة (مع قيم افتراضية)
-const ABOADAM94 = process.env.OWNER_PASS || 'owner123';
+const OWNER_PASS = process.env.OWNER_PASS || 'owner123';
 const ADMIN_PASS = process.env.ADMIN_PASS || 'admin123';
 
 // تخزين مؤقت داخل الذاكرة (بدون قاعدة بيانات)
