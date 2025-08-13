@@ -1,0 +1,39 @@
+:root{
+  --bg:#0b1220; --panel:#0e1b33; --line:#233459; --card:#0f1b31;
+  --text:#e6eaf4; --muted:#a4b2d1; --accent:#7dd3fc; --btn:#1a2a4b; --btn2:#2b4376;
+  --owner:#39ff14; --admin:#48a6ff; --user:#a1a1aa; --system:#fbbf24;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Arial}
+.topbar{position:sticky;top:0;padding:12px;background:linear-gradient(180deg,#0f172a,#0b1220);border-bottom:1px solid var(--line)}
+.title{font-weight:900;font-size:26px;letter-spacing:.5px;text-align:center;color:#e8f2ff;text-shadow:0 2px 16px rgba(125,211,252,.25)}
+.layout{max-width:1200px;margin:auto;padding:12px}
+.card{background:var(--panel);border:1px solid #27345a;border-radius:16px;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.grid{display:grid;gap:8px}
+.err{color:#ff6b6b}
+.hint{color:var(--muted);font-size:12px}
+.hidden{display:none}
+.chat{display:grid;grid-template-columns:300px 1fr;gap:12px}
+.panel h3{margin-top:6px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.divider{height:1px;background:var(--line);margin:10px 0}
+#users{list-style:none;margin:0;padding:0;max-height:200px;overflow:auto}
+#users li{padding:6px 8px;border-bottom:1px solid #223459}
+.role-owner{color:var(--owner);font-weight:800}
+.role-admin{color:var(--admin);font-weight:700}
+.role-user{color:var(--user)}
+.messages{height:60vh;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:#0e1b33;border:1px solid #25345a;border-radius:12px}
+.msg{background:var(--card);border:1px solid #213154;padding:10px 12px;border-radius:14px;width:fit-content;max-width:92%}
+.sys{background:#25131b;border-color:#51293b}
+.meta{font-size:12px;opacity:.85;margin-bottom:6px}
+.name.owner{color:var(--owner);text-shadow:0 0 10px var(--owner);font-weight:800}
+.name.admin{color:var(--admin);text-shadow:0 0 8px var(--admin);font-weight:800}
+.name.user{color:var(--user)}
+.media img{max-width:280px;border-radius:12px;display:block}
+.media video{max-width:320px;border-radius:12px;display:block}
+.media audio{width:320px;display:block}
+.composer{display:grid;grid-template-columns:1fr auto auto auto auto;gap:8px;padding:12px;border-top:1px solid var(--line);background:#0f172a;border-radius:12px}
+.composer input{background:#0b162a;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px}
+.composer button{background:var(--btn);border:1px solid var(--btn2);color:var(--text);border-radius:12px;padding:10px 14px;cursor:pointer}
+.upload input{display:none}.upload span{display:inline-block;padding:10px 12px;background:var(--btn);border:1px solid var(--btn2);border-radius:12px;cursor:pointer}
+.ownerOnly{display:none} body.owner .ownerOnly{display:inline-block}
+@media(max-width:900px){.chat{grid-template-columns:1fr} .composer{grid-template-columns:1fr auto auto auto auto} .title{font-size:22px}}

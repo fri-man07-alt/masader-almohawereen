@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nord Lite Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="title">Nord Lite Chat</div>
+  </header>
+
+  <main class="layout">
+    <section id="login" class="card">
+      <h2>تسجيل الدخول</h2>
+      <div class="grid">
+        <label>اسم المستخدم</label>
+        <input id="name" placeholder="اكتب اسمك" />
+        <label>الدور</label>
+        <select id="role">
+          <option value="user">مستخدم</option>
+          <option value="admin">مشرف ⭐</option>
+          <option value="owner">مالك 👑</option>
+        </select>
+        <label>كلمة المرور (للمالك/المشرف)</label>
+        <input id="pass" type="password" placeholder="••••••" />
+        <button id="loginBtn">دخول</button>
+        <p id="err" class="err"></p>
+      </div>
+      <p class="hint">ملاحظة: بدون قاعدة بيانات — القيم الافتراضية: مالك <code>owner123</code>، مشرف <code>admin123</code> (يمكن تغييرها من متغيرات البيئة).</p>
+    </section>
+
+    <section id="chat" class="chat hidden">
+      <aside class="panel card">
+        <h3>المتصلون</h3>
+        <ul id="users"></ul>
+
+        <div class="divider"></div>
+
+        <h3>الصلاحيات</h3>
+        <div class="row">
+          <input id="target" placeholder="اسم المستخدم" />
+        </div>
+        <div class="row">
+          <button id="grant">منح كتابة</button>
+          <button id="revoke">سحب كتابة</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>الحظر</h3>
+        <div class="row">
+          <button id="ban">حظر</button>
+          <button id="unban" class="ownerOnly">فك الحظر (مالك)</button>
+        </div>
+      </aside>
+
+      <section class="room card">
+        <div id="messages" class="messages"></div>
+
+        <div class="composer">
+          <input id="text" placeholder="اكتب رسالة (المسموح لهم فقط)" />
+          <label class="upload">
+            <input type="file" id="file" multiple />
+            <span>📎</span>
+          </label>
+          <button id="recBtn">🎙️</button>
+          <button id="stopBtn" disabled>⏹️</button>
+          <button id="send">إرسال</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
